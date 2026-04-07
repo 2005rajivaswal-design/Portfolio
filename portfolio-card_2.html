@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>3D Artist — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Clash+Display:wght@700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0d0d14;
+    --card: #13131f;
+    --white: #f0eeff;
+    --muted: #8886a8;
+    --accent1: #7c5cfc;
+    --accent2: #e040fb;
+    --accent3: #00d4ff;
+    --border: #1f1f35;
+    --grad: linear-gradient(135deg, #7c5cfc 0%, #e040fb 55%, #ff6b6b 100%);
+    --grad-subtle: linear-gradient(135deg, rgba(124,92,252,0.15) 0%, rgba(224,64,251,0.1) 100%);
+  }
+
+  body {
+    background: var(--bg);
+    background-image: radial-gradient(ellipse at 20% 20%, rgba(124,92,252,0.12) 0%, transparent 60%),
+                      radial-gradient(ellipse at 80% 80%, rgba(0,212,255,0.08) 0%, transparent 60%);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    overflow-x: hidden;
+  }
+
+  .card {
+    max-width: 580px;
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(124,92,252,0.1), 0 30px 80px rgba(0,0,0,0.5);
+    animation: fadeUp 0.7s cubic-bezier(.22,1,.36,1) both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .header {
+    background: var(--grad);
+    padding: 2.2rem 2rem 1.8rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.15);
+  }
+
+  .header::after {
+    content: 'RA';
+    position: absolute;
+    right: -8px;
+    top: -16px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 7rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.1);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 0.5rem;
+    position: relative;
+  }
+
+  .name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(1.9rem, 6vw, 2.8rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+    position: relative;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+
+  .role {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    margin-top: 0.45rem;
+    letter-spacing: 0.06em;
+    position: relative;
+  }
+
+  .body {
+    padding: 1.8rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+  }
+
+  .skills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-tag {
+    background: rgba(124,92,252,0.12);
+    border: 1px solid rgba(124,92,252,0.25);
+    border-radius: 6px;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: #c4b8ff;
+    transition: all 0.2s;
+  }
+
+  .skill-tag:hover {
+    background: rgba(124,92,252,0.25);
+    border-color: var(--accent1);
+    color: #fff;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.7rem;
+  }
+
+  .link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    text-decoration: none;
+    color: var(--white);
+    background: rgba(255,255,255,0.02);
+    transition: all 0.25s;
+    margin-bottom: 0.6rem;
+    cursor: pointer;
+  }
+
+  .link-btn:hover {
+    background: var(--grad-subtle);
+    border-color: rgba(124,92,252,0.5);
+    transform: translateX(3px);
+  }
+
+  .link-btn .link-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .link-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--grad);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(124,92,252,0.3);
+  }
+
+  .link-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .link-sub {
+    font-size: 0.68rem;
+    color: var(--muted);
+    margin-top: 2px;
+    font-weight: 400;
+  }
+
+  .link-arrow {
+    font-size: 1rem;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+
+  .link-btn:hover .link-arrow {
+    color: #fff;
+    transform: translateX(4px);
+  }
+
+  .contact-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.82rem;
+    color: var(--white);
+    font-weight: 400;
+  }
+
+  .contact-item span.icon {
+    width: 28px;
+    height: 28px;
+    background: rgba(124,92,252,0.15);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+
+  .footer {
+    background: rgba(0,0,0,0.25);
+    border-top: 1px solid var(--border);
+    padding: 0.9rem 2rem;
+    font-size: 0.62rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="tag">Portfolio · 2025</div>
+    <div class="name">Rajiv Aswal</div>
+    <div class="role">3D Artist &nbsp;/&nbsp; CGI &nbsp;/&nbsp; 3D Generalist</div>
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    <!-- Skills -->
+    <div>
+      <div class="section-label">Specialisations</div>
+      <div class="skills-row">
+        <span class="skill-tag">CGI</span>
+        <span class="skill-tag">Product Animation</span>
+        <span class="skill-tag">AR / VR</span>
+        <span class="skill-tag">AI Content</span>
+        <span class="skill-tag">OOH Displays</span>
+        <span class="skill-tag">3D Visualisation</span>
+        <span class="skill-tag">Commercials</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ArtStation -->
+    <div>
+      <div class="section-label">Portfolio</div>
+      <a class="link-btn" href="https://www.artstation.com/rajiv_aswal" target="_blank">
+        <div class="link-left">
+          <div class="link-icon">🎨</div>
+          <div>
+            <div class="link-title">ArtStation</div>
+            <div class="link-sub">3D Work · CGI · Renders · Animations</div>
+          </div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Google Drive -->
+    <div>
+      <div class="section-label">Additional Work</div>
+      <a class="link-btn" href="https://drive.google.com/drive/folders/12RO8ZNEVcPKoz9eliHj09orch8sd2-Ec" target="_blank">
+        <div class="link-left">
+          <div class="link-icon">📁</div>
+          <div>
+            <div class="link-title">Google Drive</div>
+            <div class="link-sub">Project Files · Demo Reels · Additional Work</div>
+          </div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Contact -->
+    <div>
+      <div class="section-label">Contact</div>
+      <div class="contact-row">
+        <div class="contact-item">
+          <span class="icon">📧</span>
+          <span>2005rajivaswal@gmail.com</span>
+        </div>
+        <div class="contact-item">
+          <span class="icon">📱</span>
+          <span>+91 7668001788</span>
+        </div>
+      </div>
+    </div>
+  </div><!-- end body -->
+
+  <div class="footer">Rajiv Aswal · 3D Artist & CGI Generalist</div>
+
+</div><!-- end card -->
+
+</body>
+</html>
